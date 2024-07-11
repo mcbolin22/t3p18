@@ -13,8 +13,6 @@ router.get("/all", async (request, response) => {
     let results = await Contact.find().exec();
     console.log("Found documents:");
     console.log(results)
-
-
     response.json({
         message:"Found documents!",
         data: results
@@ -22,14 +20,27 @@ router.get("/all", async (request, response) => {
 });
 
 // GET localhost:3001/contacts/1234 (id)
-router.get("/:id", (request, response) => {
-
+// VERB ip:port/controller/:id
+router.get("/:id", async (request, response) => {
+    let results = await Contact.findById(request.params.id).exec();
+    console.log("Found documents:");
+    console.log(results)
+    response.json({
+        message:"Found documents!",
+        data: results
+    });
 });
 
 
 // POST localhost:3001/contacts
-router.post("/", (request, response) => {
-
+router.post("/", async (request, response) => {
+    let results = await Contact.create(request.body);
+    console.log("Created documents:");
+    console.log(results)
+    response.json({
+        message:"Created documents!",
+        data: results
+    });
 });
 
 // PATCH localhost:3001/contacts/1234 - use PATCH to access specifics rather than PUT which replaces all data.

@@ -8,6 +8,8 @@ const app = express();
 // const { connect } = require("./utils/database");
 // connect();
 
+app.use(express.json());
+
 
 app.get("/", (request, response, next) => {
 
